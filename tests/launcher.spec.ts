@@ -163,6 +163,28 @@ test("Pac-Wa is playable in phone portrait", async ({ page }, testInfo) => {
   await expect(frame.locator("body")).toHaveAttribute("data-phase", "paused");
 });
 
+test("Naippy Wa fills a portrait phone and accepts touch input", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "mobile", "Portrait phone layout only.");
+  await page.getByRole("button", { name: "Previous game" }).click();
+  await page.getByRole("button", { name: "Play Naippy Wa" }).click();
+  const frame = page.frameLocator('iframe[title="Naippy Wa game"]');
+  const start = frame.getByRole("button", { name: "START GAME" });
+  await expect(start).toBeVisible({ timeout: 15_000 });
+  const layout = await frame.locator("#game-canvas canvas").evaluate((canvas: HTMLCanvasElement) => ({
+    worldWidth: canvas.width,
+    worldHeight: canvas.height,
+    displayWidth: canvas.getBoundingClientRect().width,
+    viewportWidth: innerWidth,
+  }));
+  expect(layout.worldWidth).toBe(540);
+  expect(layout.worldHeight).toBeGreaterThan(layout.worldWidth);
+  expect(layout.displayWidth).toBeCloseTo(layout.viewportWidth, 0);
+  await start.tap();
+  await expect(frame.getByLabel("Current score")).toBeVisible();
+  await frame.getByRole("button", { name: "Pause game" }).tap();
+  await expect(frame.getByRole("heading", { name: "PAUSED" })).toBeVisible();
+});
+
 test("sound starts only after interaction and mute persists", async ({ page }) => {
   const contextsBefore = await page.evaluate(() => document.querySelectorAll("audio").length);
   expect(contextsBefore).toBe(0);
