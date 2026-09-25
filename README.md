@@ -2,14 +2,11 @@
 
 An isolated pixel-art launcher for Pac-Wa, Naitris, NaiSnake, and Naippy Wa.
 
+**Play online:** https://uikasama.github.io/NaiClassicGames/
+
 ## Run the launcher
 
-On macOS, double-click `NaiClassicGames.app` beside this folder. The app uses the
-Naiwa pixel icon, opens a Terminal window, installs dependencies on first run,
-starts the launcher, and opens the browser automatically. Press `Control+C` in
-that Terminal window to stop it.
-
-Or run it manually:
+To run the launcher locally:
 
 ```bash
 npm install
