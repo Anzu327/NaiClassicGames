@@ -86,6 +86,14 @@ button:focus-visible, a:focus-visible { outline: 3px solid white; outline-offset
 }
 .intro-button:focus-visible { outline: 0; }
 .intro-button:focus-visible span { color: var(--yellow); }
+.intro-qr-button {
+  position: absolute; z-index: 2; top: max(20px, env(safe-area-inset-top)); right: 24px;
+  display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 10px 14px;
+  border: 2px solid var(--mint); background: rgba(3,21,47,.9); color: var(--mint);
+  box-shadow: 0 0 0 3px var(--brown); font: 9px/1.4 var(--pixel);
+}
+.intro-qr-button:hover { background: var(--mint); color: var(--navy-950); }
+.intro-qr-button svg { width: 23px; height: 23px; fill: none; stroke: currentColor; stroke-width: 2.2; }
 .is-intro #app-shell,
 .is-intro > .ambient-world,
 .is-intro > .skip-link { visibility: hidden; }
@@ -341,6 +349,7 @@ body.is-reading-about .ambient-world, body.is-reading-about #app-shell { filter:
   .pixel-grid { transform: perspective(450px) rotateX(65deg) translateY(58%); }
   .intro-button { width: min(90vw, 620px); gap: 34px; padding-inline: 12px; }
   .intro-button img { max-height: 34vh; }
+  .intro-qr-button { right: 16px; min-height: 44px; padding: 8px 10px; font-size: 8px; }
   .about-dialog { width: calc(100vw - 24px); max-height: calc(100svh - 24px); }
   .about-dialog__frame { max-height: calc(100svh - 30px); }
   .about-dialog__header { padding: 23px 20px 19px; gap: 14px; }

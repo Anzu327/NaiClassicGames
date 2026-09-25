@@ -98,6 +98,19 @@ test("opens the website QR code from its own home button", async ({ page }) => {
   await expect(button).toBeFocused();
 });
 
+test("shows the QR button on the opening screen", async ({ page }) => {
+  await page.reload();
+  const button = page.locator("#intro-qr-button");
+  const dialog = page.getByRole("dialog", { name: "SCAN TO OPEN" });
+  await expect(button).toBeVisible();
+  await button.click();
+  await expect(dialog).toBeVisible();
+  await expect(page.getByRole("button", { name: "Enter game library" })).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(dialog).toBeHidden();
+  await expect(button).toBeFocused();
+});
+
 test("supports pointer dragging and persists the active game", async ({ page }) => {
   const stage = page.locator("#card-stage");
   const box = await stage.boundingBox();

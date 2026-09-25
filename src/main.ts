@@ -11,6 +11,7 @@ const byId = <T extends HTMLElement>(id: string): T => {
 
 const introScreen = byId<HTMLElement>("intro-screen");
 const introButton = byId<HTMLButtonElement>("intro-button");
+const introQrButton = byId<HTMLButtonElement>("intro-qr-button");
 const appShell = byId<HTMLDivElement>("app-shell");
 const introParticleCanvas = byId<HTMLCanvasElement>("intro-particle-field");
 const particleCanvas = byId<HTMLCanvasElement>("particle-field");
@@ -59,6 +60,7 @@ let playing = false;
 let lastPlayFocus: HTMLElement = playButton;
 let wheelLocked = false;
 let introVisible = true;
+let qrReturnFocus: HTMLButtonElement = qrButton;
 
 function initialIndex(): number {
   const params = new URLSearchParams(location.hash.replace(/^#/, ""));
@@ -314,6 +316,12 @@ requestAnimationFrame(() => layoutCards());
 syncSoundButton();
 
 introButton.addEventListener("click", enterLibrary);
+function openQr(button: HTMLButtonElement): void {
+  qrReturnFocus = button;
+  qrDialog.showModal();
+  qrCloseButton.focus();
+}
+introQrButton.addEventListener("click", () => openQr(introQrButton));
 previousButton.addEventListener("click", () => changeBy(-1));
 nextButton.addEventListener("click", () => changeBy(1));
 stage.addEventListener("pointerdown", onPointerDown);
@@ -334,10 +342,10 @@ errorBackButton.addEventListener("click", () => closeGame());
 retryButton.addEventListener("click", retryGame);
 soundButton.addEventListener("click", () => { void audio.ensureStarted(); audio.toggleMuted(); syncSoundButton(); });
 fullscreenButton.addEventListener("click", toggleFullscreen);
-qrButton.addEventListener("click", () => { qrDialog.showModal(); qrCloseButton.focus(); });
+qrButton.addEventListener("click", () => openQr(qrButton));
 qrCloseButton.addEventListener("click", () => qrDialog.close());
 qrDialog.addEventListener("click", (event) => { if (event.target === qrDialog) qrDialog.close(); });
-qrDialog.addEventListener("close", () => qrButton.focus({ preventScroll: true }));
+qrDialog.addEventListener("close", () => qrReturnFocus.focus({ preventScroll: true }));
 aboutButton.addEventListener("click", openAbout);
 aboutCloseButton.addEventListener("click", closeAbout);
 aboutDialog.addEventListener("click", (event) => {
@@ -358,6 +366,7 @@ window.addEventListener("popstate", () => {
 });
 
 window.addEventListener("keydown", (event) => {
+  if (qrDialog.open) return;
   if (introVisible) {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
