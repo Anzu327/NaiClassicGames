@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#05030e" />
+    <title>Pac-Wa | Naiwa's Maze Adventure</title>
+    <script type="module" crossorigin src="./assets/index-yAveSvEp.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BNHXMcbX.css">
+  </head>
+  <body>
+    <main id="app">
+      <section class="game-shell" aria-label="Pac-Wa: Naiwa's Maze Adventure">
+        <header id="hud" class="hud" aria-live="polite">
+          <div class="hud-cluster"><span class="hud-label">SCORE</span><strong id="score">000000</strong></div>
+          <div class="hud-title"><span class="mini-naiwa"></span><span>PAC-WA</span></div>
+          <div class="hud-cluster hud-right"><span class="hud-label">BEST</span><strong id="high-score">000000</strong></div>
+        </header>
+        <div id="game-wrap" class="game-wrap">
+          <div id="game-canvas"></div>
+          <div class="corner-controls">
+            <button id="mute-button" class="icon-button" type="button" aria-label="Mute">🔊</button>
+            <button id="pause-button" class="icon-button" type="button" aria-label="Pause">Ⅱ</button>
+          </div>
+          <div id="lives" class="lives" aria-label="Lives remaining"></div>
+          <div class="mobile-play-hint" aria-hidden="true">SWIPE ON THE MAZE <span>↑ ↓ ← →</span> TO TURN</div>
+          <div id="overlay" class="overlay">
+            <div class="panel">
+              <div class="eyebrow">NAIWA ARCADE PRESENTS</div>
+              <img id="brand-logo" class="brand-logo" src="./pac-wa-logo.png" alt="Pac-Wa" />
+              <div class="pellet-trail" aria-hidden="true"><span></span><span></span><span></span><b></b><span></span><span></span><span></span></div>
+              <h1 id="overlay-title" class="status-title">Naiwa's Maze<br /><span>Adventure</span></h1>
+              <p id="overlay-copy">Clear the maze of pellets. Power pellets let Naiwa fight back against the ghosts.</p>
+              <button id="primary-button" class="primary-button" type="button">START GAME</button>
+              <div id="controls-hint" class="controls-hint">
+                <span class="desktop-hint">ARROW KEYS / WASD TO MOVE <i></i> P TO PAUSE</span>
+                <span class="mobile-hint">SWIPE ON THE MAZE TO TURN<br />IN PORTRAIT, USE THE DIRECTION PAD<br />TAP Ⅱ TO PAUSE</span>
+              </div>
+            </div>
+          </div>
+          <div id="toast" class="toast"></div>
+        </div>
+        <nav class="portrait-controls" aria-label="Movement controls">
+          <p>SWIPE THE MAZE OR TAP TO TURN</p>
+          <div class="direction-pad">
+            <button type="button" data-direction="up" aria-label="Move up">▲</button>
+            <button type="button" data-direction="left" aria-label="Move left">◀</button>
+            <button type="button" data-direction="down" aria-label="Move down">▼</button>
+            <button type="button" data-direction="right" aria-label="Move right">▶</button>
+          </div>
+        </nav>
+      </section>
+    </main>
+  </body>
+</html>

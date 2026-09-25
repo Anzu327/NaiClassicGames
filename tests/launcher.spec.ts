@@ -120,6 +120,36 @@ test("launches a committed snapshot and returns to the same selection", async ({
   await expect(page.getByRole("button", { name: "Play Pac-Wa" })).toBeVisible();
 });
 
+test("Pac-Wa is playable in phone portrait", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "mobile", "Portrait phone layout only.");
+  await page.getByRole("button", { name: "Play Pac-Wa" }).click();
+  const frame = page.frameLocator('iframe[title="Pac-Wa game"]');
+  await expect(frame.getByRole("button", { name: "START GAME" })).toBeVisible({ timeout: 15_000 });
+  await expect(frame.getByRole("navigation", { name: "Movement controls" })).toBeVisible();
+  const layout = await frame.locator(".game-shell").evaluate(() => {
+    const board = document.querySelector(".game-wrap")!.getBoundingClientRect();
+    const controls = document.querySelector(".portrait-controls")!.getBoundingClientRect();
+    return {
+      viewportWidth: innerWidth,
+      documentWidth: document.documentElement.scrollWidth,
+      viewportHeight: innerHeight,
+      documentHeight: document.documentElement.scrollHeight,
+      boardRatio: board.width / board.height,
+      controlsBottom: controls.bottom,
+    };
+  });
+  expect(layout.documentWidth).toBeLessThanOrEqual(layout.viewportWidth);
+  expect(layout.documentHeight).toBeLessThanOrEqual(layout.viewportHeight);
+  expect(layout.boardRatio).toBeCloseTo(16 / 9, 1);
+  expect(layout.controlsBottom).toBeLessThanOrEqual(layout.viewportHeight);
+
+  await frame.getByRole("button", { name: "START GAME" }).click();
+  await frame.getByRole("button", { name: "Move left" }).click();
+  await expect(frame.locator("body")).toHaveAttribute("data-direction", "left");
+  await frame.getByRole("button", { name: "Pause" }).click();
+  await expect(frame.locator("body")).toHaveAttribute("data-phase", "paused");
+});
+
 test("sound starts only after interaction and mute persists", async ({ page }) => {
   const contextsBefore = await page.evaluate(() => document.querySelectorAll("audio").length);
   expect(contextsBefore).toBe(0);
