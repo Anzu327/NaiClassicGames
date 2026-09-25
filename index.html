@@ -29,6 +29,9 @@
         <img class="master-logo" src="./branding/nai-classic-games-logo.png" alt="NaiClassicGames" />
         <div class="topbar-actions">
           <p class="desktop-hint"><kbd>←</kbd><kbd>→</kbd> BROWSE <span></span> <kbd>ENTER</kbd> PLAY</p>
+          <button id="qr-button" class="square-button" type="button" aria-label="Show website QR code" title="Show website QR code">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM6 6h1M17 6h1M6 17h1M14 14h2v2h-2zM19 14h2M19 17v4M14 19h2v2h-2z" /></svg>
+          </button>
           <button id="about-button" class="square-button" type="button" aria-label="About this work" title="About this work">
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 10v7M12 7h.01" /></svg>
           </button>
@@ -126,6 +129,19 @@
           </section>
         </div>
       </div>
+    </dialog>
+
+    <dialog id="qr-dialog" class="qr-dialog" aria-labelledby="qr-title">
+      <div class="qr-dialog__header">
+        <div>
+          <p class="about-dialog__eyebrow">SHARE THE SITE</p>
+          <h2 id="qr-title">SCAN TO OPEN</h2>
+        </div>
+        <button id="qr-close-button" class="about-close-button" type="button" aria-label="Close QR code">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
+        </button>
+      </div>
+      <img src="./qrcode_uikasama.github.io.png" alt="QR code for the website" width="450" height="450" />
     </dialog>
 
     <section id="player-overlay" class="player-overlay" hidden aria-label="Game player">

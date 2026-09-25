@@ -29,6 +29,9 @@ const selectionStatus = byId<HTMLElement>("selection-status");
 const playButton = byId<HTMLButtonElement>("play-button");
 const soundButton = byId<HTMLButtonElement>("sound-button");
 const fullscreenButton = byId<HTMLButtonElement>("fullscreen-button");
+const qrButton = byId<HTMLButtonElement>("qr-button");
+const qrDialog = byId<HTMLDialogElement>("qr-dialog");
+const qrCloseButton = byId<HTMLButtonElement>("qr-close-button");
 const aboutButton = byId<HTMLButtonElement>("about-button");
 const aboutDialog = byId<HTMLDialogElement>("about-dialog");
 const aboutCloseButton = byId<HTMLButtonElement>("about-close-button");
@@ -331,6 +334,10 @@ errorBackButton.addEventListener("click", () => closeGame());
 retryButton.addEventListener("click", retryGame);
 soundButton.addEventListener("click", () => { void audio.ensureStarted(); audio.toggleMuted(); syncSoundButton(); });
 fullscreenButton.addEventListener("click", toggleFullscreen);
+qrButton.addEventListener("click", () => { qrDialog.showModal(); qrCloseButton.focus(); });
+qrCloseButton.addEventListener("click", () => qrDialog.close());
+qrDialog.addEventListener("click", (event) => { if (event.target === qrDialog) qrDialog.close(); });
+qrDialog.addEventListener("close", () => qrButton.focus({ preventScroll: true }));
 aboutButton.addEventListener("click", openAbout);
 aboutCloseButton.addEventListener("click", closeAbout);
 aboutDialog.addEventListener("click", (event) => {
@@ -362,7 +369,7 @@ window.addEventListener("keydown", (event) => {
     if (event.shiftKey && event.key === "Escape") { event.preventDefault(); closeGame(); }
     return;
   }
-  if (aboutDialog.open) return;
+  if (aboutDialog.open || qrDialog.open) return;
   if (event.key === "ArrowLeft") { event.preventDefault(); changeBy(-1); }
   else if (event.key === "ArrowRight") { event.preventDefault(); changeBy(1); }
   else if (event.key === "Enter" && document.activeElement === playButton) launchGame();

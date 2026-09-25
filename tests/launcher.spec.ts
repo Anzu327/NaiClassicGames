@@ -84,6 +84,20 @@ test("reveals the work explanation only after the about button is clicked", asyn
   }
 });
 
+test("opens the website QR code from its own home button", async ({ page }) => {
+  const button = page.getByRole("button", { name: "Show website QR code" });
+  const dialog = page.getByRole("dialog", { name: "SCAN TO OPEN" });
+  await expect(button).toBeVisible();
+  await button.click();
+  await expect(dialog).toBeVisible();
+  const image = dialog.getByRole("img", { name: "QR code for the website" });
+  await expect(image).toBeVisible();
+  await expect(image).toHaveJSProperty("naturalWidth", 450);
+  await page.getByRole("button", { name: "Close QR code" }).click();
+  await expect(dialog).toBeHidden();
+  await expect(button).toBeFocused();
+});
+
 test("supports pointer dragging and persists the active game", async ({ page }) => {
   const stage = page.locator("#card-stage");
   const box = await stage.boundingBox();
