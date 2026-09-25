@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#32c7df" />
+    <meta name="description" content="Naippy Wa — flap through a bright pixel countryside." />
+    <title>Naippy Wa</title>
+    <script type="module" crossorigin src="./assets/index-Bgjw5A9R.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index--bx9bf8g.css">
+  </head>
+  <body>
+    <main id="app" aria-label="Naippy Wa game">
+      <div id="game-shell">
+        <div id="game-canvas" aria-label="Game view"></div>
+        <div id="ui-layer">
+          <div id="loading" class="panel loading-panel" role="status">LOADING...</div>
+
+          <section id="ready-panel" class="panel hero-panel" hidden aria-labelledby="game-title">
+            <h1 id="game-title" class="sr-only">Naippy Wa</h1>
+            <img
+              class="game-logo"
+              src="./branding/naippy-wa-logo.png"
+              alt="Naippy Wa"
+              width="1536"
+              height="1024"
+            />
+            <button class="primary-button start-button" data-action="FLAP">START GAME</button>
+            <div class="best-card"><span>HIGH SCORE</span><strong data-best>0</strong></div>
+            <div class="control-hint"><kbd>SPACE</kbd><span>OR CLICK / TAP</span></div>
+            <button class="icon-button sound-button" data-action="MUTE" aria-label="Toggle sound" title="Toggle sound (M)">♪</button>
+          </section>
+
+          <section id="hud" hidden aria-label="Game status">
+            <div class="hud-best"><span>BEST</span><strong data-best>0</strong></div>
+            <output id="score" aria-label="Current score">0</output>
+            <div class="hud-actions">
+              <button class="icon-button" data-action="PAUSE" aria-label="Pause game" title="Pause (P / Esc)">Ⅱ</button>
+              <button class="icon-button sound-button" data-action="MUTE" aria-label="Toggle sound" title="Toggle sound (M)">♪</button>
+            </div>
+          </section>
+
+          <section id="pause-panel" class="panel modal-panel" hidden aria-labelledby="pause-title">
+            <div class="eyebrow">TAKE A BREATH</div>
+            <h2 id="pause-title">PAUSED</h2>
+            <button class="primary-button" data-action="PAUSE">RESUME</button>
+            <div class="button-row">
+              <button class="secondary-button" data-action="RESTART">RESTART</button>
+              <button class="secondary-button" data-action="HOME">MAIN MENU</button>
+            </div>
+          </section>
+
+          <section id="game-over-panel" class="panel modal-panel" hidden aria-labelledby="over-title">
+            <div id="new-best" class="record-badge" hidden>NEW BEST!</div>
+            <h2 id="over-title">GAME OVER</h2>
+            <div class="result-grid">
+              <div><span>SCORE</span><strong id="final-score">0</strong></div>
+              <div><span>BEST</span><strong data-best>0</strong></div>
+            </div>
+            <button class="primary-button" data-action="RESTART">FLY AGAIN</button>
+            <button class="text-button" data-action="HOME">MAIN MENU</button>
+          </section>
+
+          <div id="rotate-device" role="status">
+            <div class="rotate-icon">📱</div>
+            <strong>ROTATE YOUR DEVICE</strong>
+            <span>Naippy needs a wider sky!</span>
+          </div>
+        </div>
+      </div>
+      <p class="footer-note"><kbd>SPACE</kbd> FLAP <span>·</span> <kbd>P</kbd> PAUSE <span>·</span> <kbd>M</kbd> SOUND</p>
+    </main>
+  </body>
+</html>

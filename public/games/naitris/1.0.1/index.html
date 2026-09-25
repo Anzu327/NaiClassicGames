@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#031635" />
+    <meta name="description" content="Naitris — a warm, starry pixel-art block stacking game." />
+    <title>Naitris</title>
+    <script type="module" crossorigin src="./assets/index-ByhbVUbZ.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DsoNvgrs.css">
+  </head>
+  <body>
+    <main id="app">
+      <section class="game-shell" aria-label="Naitris game">
+        <img class="game-logo" src="./branding/naitris-logo.png" alt="Naitris" />
+
+        <div class="compact-hud" aria-hidden="true">
+          <span>NEXT <b id="compact-next"></b></span>
+          <span>SCORE <b id="compact-score">0</b></span>
+          <span>LV <b id="compact-level">1</b></span>
+          <span>LINES <b id="compact-lines">0</b></span>
+        </div>
+
+        <div class="cabinet">
+          <div class="frame-mascot" aria-hidden="true">
+            <img id="frame-mascot-image" alt="" />
+          </div>
+          <div id="game-frame" class="playfield-frame">
+            <div id="game-canvas" aria-label="10 by 20 Naitris playfield"></div>
+            <div class="playfield-gloss" aria-hidden="true"></div>
+          </div>
+
+          <aside class="scoreboard" aria-label="Game statistics">
+            <img class="scoreboard-art" src="./ui/right-scoreboard-panel.png" alt="" />
+            <div id="next-preview" class="next-preview" aria-label="Next piece"></div>
+            <output id="score" class="score-value">000000</output>
+            <output id="level" class="level-value">1</output>
+            <output id="lines" class="lines-value">0</output>
+            <div id="character-sprite" class="character-sprite is-idle" aria-label="Naiwa companion"></div>
+            <span class="best-label">BEST <b id="best">0</b></span>
+          </aside>
+          <div class="corner-actions">
+            <button id="pause-button" class="icon-button" type="button" aria-label="Pause">Ⅱ</button>
+            <button id="mute-button" class="icon-button" type="button" aria-label="Mute">♪</button>
+          </div>
+        </div>
+
+        <nav class="touch-controls" aria-label="Touch controls">
+          <button data-action="left" aria-label="Move left">◀</button>
+          <button data-action="rotate" aria-label="Rotate clockwise">↻</button>
+          <button data-action="right" aria-label="Move right">▶</button>
+          <button data-action="soft" aria-label="Soft drop">▼</button>
+          <button data-action="hard" class="wide-control" aria-label="Hard drop">DROP</button>
+        </nav>
+      </section>
+
+      <div id="overlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="overlay-title">
+        <div class="menu-panel">
+          <img id="overlay-logo" class="overlay-logo" alt="Naitris" />
+          <p id="eyebrow" class="eyebrow">STACK · CLEAR · SHINE</p>
+          <h1 id="overlay-title">Ready to stack?</h1>
+          <p id="overlay-copy">Build bright lines beneath the midnight sky.</p>
+          <div id="result-row" class="result-row" hidden>
+            <span>SCORE <strong id="result-score">0</strong></span>
+            <span>BEST <strong id="result-best">0</strong></span>
+          </div>
+          <p id="record-badge" class="record-badge" hidden>NEW BEST!</p>
+          <button id="primary-button" class="primary-button" type="button">Play</button>
+          <p class="key-hint">ARROWS / WASD MOVE · W/X/Z ROTATE<br />SPACE HARD DROP · P PAUSE</p>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

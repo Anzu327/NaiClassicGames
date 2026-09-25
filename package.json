@@ -1,0 +1,19 @@
+{
+  "name": "nai-classic-games",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "test": "tsc --noEmit",
+    "test:e2e": "playwright test",
+    "release:game": "node scripts/release-game.mjs",
+    "activate:game": "node scripts/activate-game.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.7"
+  }
+}

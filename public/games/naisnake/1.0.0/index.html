@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#020a20" />
+    <meta name="description" content="NaiSnake — a warm pixel-art twist on classic Snake." />
+    <title>NaiSnake</title>
+    <script type="module" crossorigin src="./assets/index-DHltWBhd.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-C9Smeaqy.css">
+  </head>
+  <body>
+    <main id="app">
+      <section class="game-shell" aria-label="NaiSnake game">
+        <header id="hud" aria-live="polite">
+          <div class="score-card"><span>Score</span><strong id="score">0</strong></div>
+          <div id="status-pill" class="status-pill" hidden><span>🍼</span><b id="milk-timer">6.0s</b></div>
+          <div class="score-card score-card--right"><span>Best</span><strong id="best">0</strong></div>
+        </header>
+
+        <div id="game-frame">
+          <div id="game-canvas" aria-label="NaiSnake playfield"></div>
+          <div id="toast" class="toast" aria-live="polite"></div>
+          <div class="corner-actions">
+            <button id="pause-button" class="icon-button" type="button" aria-label="Pause">Ⅱ</button>
+            <button id="mute-button" class="icon-button" type="button" aria-label="Mute">♪</button>
+          </div>
+
+          <div id="overlay" class="overlay">
+            <div class="panel">
+              <img id="game-logo" class="game-logo" src="./logo-naisnake.png" alt="NaiSnake" />
+              <p id="eyebrow" class="eyebrow">A MILKY LITTLE ADVENTURE</p>
+              <h1 id="overlay-title">Ready to wiggle?</h1>
+              <p id="overlay-copy">Eat apples, chase the milk, and grow as long as you can.</p>
+              <div id="result-row" class="result-row" hidden>
+                <div><span>Score</span><strong id="result-score">0</strong></div>
+                <div><span>Best</span><strong id="result-best">0</strong></div>
+              </div>
+              <p id="record-badge" class="record-badge" hidden>New Best!</p>
+              <button id="primary-button" class="primary-button" type="button">Play</button>
+              <p id="controls-hint" class="controls-hint">Arrow Keys / WASD · Swipe to move · P to pause</p>
+            </div>
+          </div>
+        </div>
+
+        <nav id="touch-controls" class="touch-controls" aria-label="Movement controls">
+          <button data-direction="up" aria-label="Move up">▲</button>
+          <button data-direction="left" aria-label="Move left">◀</button>
+          <button data-direction="down" aria-label="Move down">▼</button>
+          <button data-direction="right" aria-label="Move right">▶</button>
+        </nav>
+      </section>
+    </main>
+  </body>
+</html>

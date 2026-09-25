@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#03152f" />
+    <meta name="description" content="NaiClassicGames — four warm pixel classics in one playful library." />
+    <title>NaiClassicGames</title>
+  </head>
+  <body class="is-intro">
+    <section id="intro-screen" class="intro-screen" aria-label="NaiClassicGames title screen">
+      <canvas id="intro-particle-field" class="intro-particle-field" aria-hidden="true"></canvas>
+      <button id="intro-button" class="intro-button" type="button" aria-label="Enter game library">
+        <img src="./branding/nai-classic-games-logo.png" alt="NaiClassicGames" draggable="false" />
+        <span>CLICK / TAP TO START</span>
+      </button>
+    </section>
+
+    <a class="skip-link" href="#library">Skip to game library</a>
+    <div class="ambient-world" aria-hidden="true">
+      <div class="pixel-grid"></div>
+      <img class="background-naiwa" src="./branding/naiwa-background.png" alt="" />
+      <div class="detail-scrim"></div>
+      <canvas id="particle-field" class="particle-field"></canvas>
+    </div>
+
+    <div id="app-shell" aria-hidden="true" inert>
+      <header class="topbar">
+        <img class="master-logo" src="./branding/nai-classic-games-logo.png" alt="NaiClassicGames" />
+        <div class="topbar-actions">
+          <p class="desktop-hint"><kbd>←</kbd><kbd>→</kbd> BROWSE <span></span> <kbd>ENTER</kbd> PLAY</p>
+          <button id="about-button" class="square-button" type="button" aria-label="About this work" title="About this work">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 10v7M12 7h.01" /></svg>
+          </button>
+          <button id="fullscreen-button" class="square-button" type="button" aria-label="Toggle fullscreen" title="Toggle fullscreen (F)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5" /></svg>
+          </button>
+          <button id="sound-button" class="square-button" type="button" aria-label="Mute launcher sound" aria-pressed="false" title="Toggle sound (M)">
+            <svg class="sound-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4ZM17 8c1.3 1.1 2 2.4 2 4s-.7 2.9-2 4M19 5c2 1.8 3 4.1 3 7s-1 5.2-3 7" /></svg>
+            <svg class="sound-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4M17 9l5 6M22 9l-5 6" /></svg>
+          </button>
+        </div>
+      </header>
+
+      <main id="library" class="library" aria-label="Game library">
+        <section class="carousel-column" aria-label="Choose a game">
+          <div id="carousel" class="carousel" aria-roledescription="carousel">
+            <button id="previous-button" class="rail-arrow rail-arrow--previous" type="button" aria-label="Previous game">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7" /></svg>
+            </button>
+            <div id="card-stage" class="card-stage"></div>
+            <button id="next-button" class="rail-arrow rail-arrow--next" type="button" aria-label="Next game">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
+            </button>
+          </div>
+          <div id="pagination" class="pagination" aria-label="Choose game"></div>
+          <p id="selection-status" class="sr-only" aria-live="polite"></p>
+        </section>
+
+        <section id="game-details" class="game-details" aria-labelledby="active-game-name">
+          <img id="detail-logo" class="detail-logo" alt="" />
+          <h1 id="active-game-name" class="sr-only"></h1>
+          <p id="description" class="description"></p>
+          <dl class="metadata">
+            <div><dt>GENRE</dt><dd id="genre"></dd></div>
+            <div><dt>CONTROLS</dt><dd id="controls"></dd></div>
+            <div><dt>BEST SCORE</dt><dd id="best-score" class="best-score"></dd></div>
+          </dl>
+          <button id="play-button" class="play-button" type="button">
+            <span>PLAY GAME</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 9 7-9 7V5Z" /></svg>
+          </button>
+        </section>
+      </main>
+
+      <footer class="footer-bar">
+        <span id="game-count">01 / 04</span>
+        <span>DRAG OR SWIPE TO EXPLORE</span>
+      </footer>
+    </div>
+
+    <dialog id="about-dialog" class="about-dialog" aria-labelledby="about-title">
+      <div class="about-dialog__frame">
+        <header class="about-dialog__header">
+          <div>
+            <p class="about-dialog__eyebrow">ABOUT THE WORK</p>
+            <h2 id="about-title">NAI WA AND THE SHAPE OF ADAPTATION</h2>
+          </div>
+          <button id="about-close-button" class="about-close-button" type="button" aria-label="Close about this work">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
+          </button>
+        </header>
+
+        <div class="about-dialog__content">
+          <section>
+            <h3>WHAT IS NAI WA?</h3>
+            <p>Nai Wa (奶蛙) is a mysterious yellow object. On the Chinese internet, it has slowly moved away from its original image and become an online symbol that people can reuse in many different ways.</p>
+            <p>People place it into all kinds of unrelated situations—sometimes because it looks funny, and sometimes because they simply do not know what else to put there. Over time, Nai Wa has become a very random but surprisingly useful “answer”.</p>
+            <p>Even when its body is squeezed, stretched, pixelated, or reduced to a yellow block and two green eyes, it remains recognizable. Its body is no longer defined by one fixed shape; it has become a visual material that can keep changing its form.</p>
+            <figure class="about-figure about-figure--forms">
+              <img src="./about/naiwa-forms-standing.png" alt="Nai Wa changing between six standing poses" />
+              <img src="./about/naiwa-forms-flappy.png" alt="Nai Wa changing between six bird-like forms" />
+            </figure>
+          </section>
+
+          <section>
+            <h3>BEING FORCED TO ADAPT</h3>
+            <p>This work places Nai Wa inside the rules of four classic video games: Snake, Pac-Man, Flappy Bird, and Tetris. Their structures are clear and rigid, so Nai Wa must change its body and movements to fit each one.</p>
+            <figure class="about-figure about-figure--logos">
+              <img class="about-master-wordmark" src="./about/nai-classic-games-wordmark.png" alt="Nai Classic Games logo" />
+              <div class="about-game-wordmarks">
+                <img src="./about/naippy-wa-wordmark.png" alt="Naippy Wa logo" />
+                <img src="./about/naisnake-wordmark.png" alt="NaiSnake logo" />
+                <img src="./about/pac-wa-wordmark.png" alt="Pac-Wa logo" />
+                <img src="./about/naitris-wordmark.png" alt="Naitris logo" />
+              </div>
+            </figure>
+            <p>There is something strange and funny about this situation. Nai Wa always looks a little confused, as if it does not understand what is happening, yet its body has already begun adapting to the environment.</p>
+            <p>In real life, we also keep entering new rules and systems. Sometimes, before we fully understand what is happening, we already have to take our place and do what is expected of us. Nai Wa makes this situation more direct—and more absurd.</p>
+            <p>It can appear on any screen, in any game, and in any group of pixels. It keeps changing, but it is still Nai Wa.</p>
+            <p class="about-dialog__question">When adapting becomes an instinct, do we still remember what shape we originally had?</p>
+            <p class="about-dialog__ending">In the end, perhaps everyone has somehow become a yellow piece of 💩.</p>
+            <figure class="about-figure about-figure--ending-photo">
+              <img src="./about/naiwa-jet.jpg" alt="Nai Wa in the cockpit of a jet flying through the sky" />
+            </figure>
+          </section>
+        </div>
+      </div>
+    </dialog>
+
+    <section id="player-overlay" class="player-overlay" hidden aria-label="Game player">
+      <div class="player-toolbar">
+        <button id="back-button" class="back-button" type="button" aria-label="Back to library" title="Back to library (Shift + Esc)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7" /></svg>
+          <span>BACK TO LIBRARY</span>
+        </button>
+        <img id="player-logo" alt="" />
+        <span class="exit-hint"><kbd>SHIFT</kbd> + <kbd>ESC</kbd></span>
+      </div>
+      <div id="player-loading" class="player-loading" role="status">
+        <div class="loading-pixels" aria-hidden="true"><i></i><i></i><i></i></div>
+        <span>LOADING GAME</span>
+      </div>
+      <div id="player-error" class="player-error" hidden>
+        <h2>GAME COULD NOT START</h2>
+        <p>The published snapshot did not respond.</p>
+        <div><button id="retry-button" type="button">RETRY</button><button id="error-back-button" type="button">RETURN TO LIBRARY</button></div>
+      </div>
+      <div id="iframe-host" class="iframe-host"></div>
+    </section>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

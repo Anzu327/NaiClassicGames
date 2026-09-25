@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "style": "16-bit warm arcade pixel art",
+  "branding": {
+    "logo": "branding/naitris-logo.png",
+    "nativeSize": [2060, 763],
+    "title": "Naitris"
+  },
+  "character": {
+    "frameSize": [384, 384],
+    "anchor": "bottom-center",
+    "states": {
+      "idle": "character/states/naiwa-idle.png",
+      "score": "character/states/naiwa-cheer.png",
+      "gameOver": "character/states/naiwa-sad.png"
+    },
+    "animations": {
+      "idle": {
+        "strip": "character/animations/idle/naiwa-idle-strip.png",
+        "frames": "character/animations/idle/frames/*.png",
+        "frameCount": 4,
+        "playbackOrder": [1, 2, 3, 4, 3, 2],
+        "loop": true,
+        "recommendedFrameMs": 150
+      },
+      "score": {
+        "strip": "character/animations/cheer/naiwa-cheer-strip.png",
+        "frames": "character/animations/cheer/frames/*.png",
+        "frameCount": 6,
+        "playbackOrder": [1, 2, 3, 4, 5, 6],
+        "loop": false,
+        "recommendedFrameMs": 110
+      },
+      "gameOver": {
+        "strip": "character/animations/sad/naiwa-sad-strip.png",
+        "frames": "character/animations/sad/frames/*.png",
+        "frameCount": 5,
+        "playbackOrder": [1, 2, 3, 4, 5],
+        "loop": false,
+        "holdLastFrame": true,
+        "recommendedFrameMs": 150
+      }
+    },
+    "recommendedScoreReactionMs": 1050
+  },
+  "ui": {
+    "rightScoreboard": "ui/right-scoreboard-panel.png",
+    "naiwaHeadBadge": "ui/naiwa-head-badge.png",
+    "nativeSize": [1024, 1536],
+    "characterStage": {
+      "x": 0.27,
+      "y": 0.62,
+      "width": 0.46,
+      "height": 0.34
+    }
+  },
+  "blocks": {
+    "atlas": "blocks/tetromino-atlas.png",
+    "order": ["I", "J", "L", "O", "S", "T", "Z"],
+    "slots": 7
+  }
+}
