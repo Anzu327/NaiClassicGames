@@ -92,6 +92,7 @@ test("opens the website QR code from its own home button", async ({ page }) => {
   await expect(dialog).toBeVisible();
   const image = dialog.getByRole("img", { name: "QR code for the website" });
   await expect(image).toBeVisible();
+  await expect(image).toHaveAttribute("src", "./qrcode_anzu327.github.io.png");
   await expect(image).toHaveJSProperty("naturalWidth", 450);
   await page.getByRole("button", { name: "Close QR code" }).click();
   await expect(dialog).toBeHidden();

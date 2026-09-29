@@ -31,6 +31,12 @@ try {
   await app.context().setOffline(true);
   await page.reload();
   await page.getByRole("button", { name: "Enter game library" }).waitFor();
+  await page.locator("#intro-qr-button").click();
+  const qr = page.locator("#qr-dialog img");
+  await qr.waitFor();
+  assert.equal(await qr.getAttribute("src"), "./qrcode_anzu327.github.io.png");
+  assert.equal(await qr.evaluate((image) => image.naturalWidth), 450);
+  await page.keyboard.press("Escape");
   await page.getByRole("button", { name: "Enter game library" }).click();
 
   for (const [index, game] of games.entries()) {
