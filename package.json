@@ -6,13 +6,17 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
+    "desktop:package": "npm run build && node scripts/package-desktop.mjs",
+    "desktop:smoke": "node scripts/smoke-desktop.mjs",
     "test": "tsc --noEmit",
     "test:e2e": "playwright test",
     "release:game": "node scripts/release-game.mjs",
     "activate:game": "node scripts/activate-game.mjs"
   },
   "devDependencies": {
+    "@electron/packager": "^20.3.0",
     "@playwright/test": "^1.55.0",
+    "electron": "^44.4.5",
     "typescript": "^5.9.2",
     "vite": "^7.1.7"
   }
